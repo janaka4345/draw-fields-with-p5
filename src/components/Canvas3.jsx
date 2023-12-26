@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 
-export default function Canvas2(props) {
+export default function Canvas3(props) {
   return (
     <div>
       <div
@@ -26,21 +26,22 @@ function setup(p5) {
   };
 }
 function draw(p5) {
-  //   let yoff = 1000;
-  let start = 0;
   return () => {
-    let xoff = start;
-    p5.background(250, 120, 0);
-
-    p5.stroke(0, 0, 0);
-    p5.noFill();
-    p5.beginShape();
-    for (let x = 0; x < 400; x++) {
-      p5.vertex(x, Math.floor(p5.noise(xoff) * 400));
-      xoff += 0.1;
+    let noiseLevel = 255;
+    let noiseScale = 0.009;
+    for (let y = 0; y < 400; y++) {
+      for (let x = 0; x < 400; x++) {
+        // Scale input coordinates.
+        let nx = noiseScale * x;
+        let ny = noiseScale * y;
+        // let nt = noiseScale * p5.frameCount;
+        // Compute noise value.
+        let c = noiseLevel * p5.noise(nx, ny);
+        // Render.
+        p5.stroke(c);
+        p5.point(x, y);
+      }
     }
-    p5.endShape();
-    start += 0.1;
   };
 }
 function mousePressed(p5) {}
