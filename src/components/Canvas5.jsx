@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
-
 export default function Canvas5(props) {
   return (
     <div>
@@ -9,6 +8,7 @@ export default function Canvas5(props) {
       // style={{ width: "100%", height: "100%" }}
       >
         <ReactP5Wrapper sketch={sketch} />
+        <h1></h1>
       </div>
     </div>
   );
@@ -28,22 +28,27 @@ function setup(p5) {
   };
 }
 function draw(p5) {
-  let scale = 20;
+  let x = 0;
+  let scale = 10;
   console.log(p5);
   let coloumns = Math.floor(200 / scale);
   let rows = Math.floor(200 * scale);
   return () => {
     p5.background(255, 0, 0);
+    // console.log(p5.frameRate());
+    // p5.text(p5.frameCount, 50, 50);
     // p5.loadPixels();
     let yoff = 0;
     for (let y = 0; y < rows; y++) {
       let xoff = 0;
       for (let x = 0; x < coloumns; x++) {
         p5.push();
-        p5.fill(Math.random() * 255);
-        p5.stroke(0);
+        let val = p5.noise(xoff, yoff) * 255;
+        p5.fill(val);
+        p5.noStroke();
         p5.square(x * scale, y * scale, scale);
         p5.pop();
+
         // let index = (x + y * p5.canvas.width) * 4;
         // console.log(p5.pixels[index]);
         // let val = p5.noise(xoff, yoff) * 255;
@@ -51,12 +56,17 @@ function draw(p5) {
         // p5.pixels[index + 1] = val;
         // p5.pixels[index + 2] = val;
         // p5.pixels[index + 3] = 255;
-        xoff += 0.01;
+        xoff += 0.1;
       }
-      yoff += 0.01;
+      yoff += 0.1;
     }
+    p5.push();
+    p5.fill(255, 0, 0);
+    p5.circle(x, x, 10);
+    p5.pop();
+    x++;
     // p5.updatePixels();
-    p5.noLoop();
+    // p5.noLoop();
   };
 }
 function mousePressed(p5) {}
