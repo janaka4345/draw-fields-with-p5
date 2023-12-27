@@ -28,6 +28,7 @@ function setup(p5) {
   };
 }
 function draw(p5) {
+  let zoff = 0;
   let x = 0;
   let scale = 10;
   console.log(p5);
@@ -47,7 +48,7 @@ function draw(p5) {
     for (let y = 0; y < rows; y++) {
       let xoff = 0;
       for (let x = 0; x < coloumns; x++) {
-        let angle = p5.noise(xoff, yoff) * p5.TWO_PI;
+        let angle = p5.noise(xoff, yoff, zoff) * p5.TWO_PI;
         let vector = p5.createVector(Math.cos(angle), Math.sin(angle));
         p5.push();
 
@@ -74,6 +75,7 @@ function draw(p5) {
     p5.circle(x, x, 10);
     p5.pop();
     x++;
+    zoff += 0.1;
     // p5.updatePixels();
     // p5.noLoop();
   };
