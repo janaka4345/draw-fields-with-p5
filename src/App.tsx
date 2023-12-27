@@ -1,8 +1,9 @@
 import "./App.css";
-import Canvas from "./components/Canvas";
-import Canvas2 from "./components/Canvas2";
-import Canvas3 from "./components/Canvas3";
-import Canvas4 from "./components/Canvas4";
+import Canvas from "./components/Canvas";//perlin noise movements
+import Canvas2 from "./components/Canvas2";//perlin noise graph
+import Canvas3 from "./components/Canvas3";// perlin noise
+import Canvas4 from "./components/Canvas4";//efficient perlin noise
+import Canvas5 from "./components/Canvas5";//flow field with perlin noise
 
 function App() {
   return (
@@ -12,7 +13,10 @@ function App() {
       {/* <Canvas /> */}
       {/* <Canvas2/> */}
       {/* <Canvas3/> */}
-      <Canvas4/>
+      {/* <Canvas4/> */}
+      <Canvas5/>
+
+
     </>
   );
 }
