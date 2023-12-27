@@ -31,11 +31,23 @@ function draw(p5) {
   let zoff = 0;
   let x = 0;
   let scale = 10;
-  console.log(p5);
+
+  /*check this out
+// Using Array.from and flatMap
+*const result = Array.from({ length: 3 }, (_, x) =>
+    Array.from({ length: 2 }, (_, y) => [x, y])
+).flat();
+*console.log(result);
+
+*/
+
   let coloumns = Math.floor(200 / scale);
-  let rows = Math.floor(200 * scale);
+  let rows = Math.floor(200 / scale);
   return () => {
+    console.log(p5.frameRate());
+    // console.log(p5);
     p5.background(255, 0, 0);
+    // console.log(p5.frameRate());
     p5.noFill();
     p5.stroke(0);
     // console.log(p5.frameRate());
@@ -52,8 +64,8 @@ function draw(p5) {
         let vector = p5.createVector(Math.cos(angle), Math.sin(angle));
         p5.push();
 
-        // // p5.fill(val);
-        // // p5.square(x * scale, y * scale, scale);
+        // // // p5.fill(val);
+        // // // p5.square(x * scale, y * scale, scale);
         p5.translate(x * scale, y * scale);
         p5.rotate(vector.heading());
         p5.line(0, 0, scale, 0);
@@ -74,7 +86,7 @@ function draw(p5) {
     p5.fill(255, 120, 0);
     p5.circle(x, x, 10);
     p5.pop();
-    x++;
+    x > 200 ? (x = 0) : x++;
     zoff += 0.1;
     // p5.updatePixels();
     // p5.noLoop();
