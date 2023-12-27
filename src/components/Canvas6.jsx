@@ -23,7 +23,7 @@ function sketch(p5) {
 }
 function setup(p5) {
   return () => {
-    p5.createCanvas(200, 200);
+    p5.createCanvas(600, 600);
 
     p5.pixelDensity(1);
   };
@@ -42,8 +42,8 @@ function draw(p5) {
 
 */
 
-  let coloumns = Math.floor(200 / scale);
-  let rows = Math.floor(200 / scale);
+  let coloumns = Math.floor(600 / scale);
+  let rows = Math.floor(600 / scale);
 
   return () => {
     p5.background(255, 0, 0);
@@ -91,7 +91,7 @@ function draw(p5) {
     p5.fill(255, 120, 0);
     p5.circle(x, x, 10);
     p5.pop();
-    x > 200 ? (x = 0) : x++;
+    x > 600 ? (x = 0) : x++;
     zoff += 0.1;
     // p5.noLoop();
   };
