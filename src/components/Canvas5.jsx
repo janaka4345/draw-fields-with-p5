@@ -35,18 +35,27 @@ function draw(p5) {
   let rows = Math.floor(200 * scale);
   return () => {
     p5.background(255, 0, 0);
+    p5.noFill();
+    p5.stroke(0);
     // console.log(p5.frameRate());
     // p5.text(p5.frameCount, 50, 50);
     // p5.loadPixels();
     let yoff = 0;
+    //p5.Vector.fromAngle is not working with wrapper
+    // console.log(vector.heading());
+    // p5.noStroke();
     for (let y = 0; y < rows; y++) {
       let xoff = 0;
       for (let x = 0; x < coloumns; x++) {
+        let angle = p5.noise(xoff, yoff) * p5.TWO_PI;
+        let vector = p5.createVector(Math.cos(angle), Math.sin(angle));
         p5.push();
-        let val = p5.noise(xoff, yoff) * 255;
-        p5.fill(val);
-        p5.noStroke();
-        p5.square(x * scale, y * scale, scale);
+
+        // // p5.fill(val);
+        // // p5.square(x * scale, y * scale, scale);
+        p5.translate(x * scale, y * scale);
+        p5.rotate(vector.heading());
+        p5.line(0, 0, scale, 0);
         p5.pop();
 
         // let index = (x + y * p5.canvas.width) * 4;
@@ -61,7 +70,7 @@ function draw(p5) {
       yoff += 0.1;
     }
     p5.push();
-    p5.fill(255, 0, 0);
+    p5.fill(255, 120, 0);
     p5.circle(x, x, 10);
     p5.pop();
     x++;
