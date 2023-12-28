@@ -20,6 +20,7 @@ export default function Canvas9(props) {
         speedY: Math.random() * 6 - 3,
         size: 5,
         history: [{ x, y }],
+        maxLineSegments: 30,
       });
     }
 
@@ -59,11 +60,15 @@ function draw(p5) {
     p5.background(0, 0, 0);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
+      // handling each particle
       particle.x +=
         particle.speedX * p5.deltaTime * 0.01 + p5.random(-1.5, 1.5);
       particle.y +=
         particle.speedY * p5.deltaTime * 0.01 + p5.random(-1.5, 1.5);
       particle.history.push({ x: particle.x, y: particle.y });
+      particle.history.length > particle.maxLineSegments
+        ? particle.history.shift()
+        : null;
     });
   };
 }
@@ -83,7 +88,6 @@ function drawParticle(p5, particle) {
   });
   p5.endShape();
   p5.pop();
-  particle.history.length > 30 ? particle.history.shift() : null;
 }
 
 function mousePressed(p5) {
