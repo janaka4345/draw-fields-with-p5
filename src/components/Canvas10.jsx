@@ -3,11 +3,14 @@ import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 let particleArray;
 let flowFieldArray;
-let cw = 200;
-let ch = 200;
+let cw = 400;
+let ch = 400;
 let cellSize = 10;
 let rows = Math.floor(ch / cellSize);
 let coloumns = Math.floor(cw / cellSize);
+let numOfParticles = 1000;
+let curve = 0.5;
+let zoom = 0.4;
 
 export default function Canvas10(props) {
   particleArray = useRef([]);
@@ -16,7 +19,7 @@ export default function Canvas10(props) {
 
   //calculating and adding the particle array
   useMemo(() => {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < numOfParticles; i++) {
       let x = Math.random() * cw;
       let y = Math.random() * ch;
       particleArray.current.push({
@@ -26,7 +29,7 @@ export default function Canvas10(props) {
         speedY: 0,
         size: 5,
         history: [{ x, y }],
-        maxLineSegments: 30,
+        maxLineSegments: 50,
       });
     }
   }, []);
@@ -34,7 +37,7 @@ export default function Canvas10(props) {
   useMemo(() => {
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < coloumns; x++) {
-        let angle = Math.cos(x) + Math.sin(y);
+        let angle = (Math.cos(x * zoom) + Math.sin(y * zoom)) * curve;
         flowFieldArray.current.push(angle);
       }
     }
@@ -70,7 +73,7 @@ function setup(p5) {
 }
 function draw(p5) {
   return () => {
-    p5.background(0, 0, 0);
+    p5.background(0, 0, 0, 255);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
       handleParticles(p5, particle);
@@ -78,17 +81,19 @@ function draw(p5) {
   };
 }
 function drawParticle(p5, particle) {
-  p5.push();
-  p5.noStroke();
-  p5.fill(255, 255, 255);
-  p5.circle(particle.x, particle.y, particle.size);
-  p5.pop();
+  // p5.push();
+  // p5.noStroke();
+  // p5.fill(255, 255, 255);
+  // p5.circle(particle.x, particle.y, particle.size);
+  // p5.pop();
 
   p5.push();
   p5.stroke(255);
   p5.noFill();
   p5.beginShape();
   particle.history.forEach((line) => {
+    if (line.x > cw || line.y > ch) {
+    }
     p5.vertex(line.x, line.y);
   });
   p5.endShape();
@@ -96,18 +101,28 @@ function drawParticle(p5, particle) {
 }
 function handleParticles(p5, particle) {
   // handling each particle
+
+  //find grid coordinate with flow field array
   const x = Math.floor(particle.x / cellSize);
   const y = Math.floor(particle.y / cellSize);
   const index = x + y * coloumns;
   const angle = flowFieldArray.current[index];
+
+  // set particles speed flowing above the grid section
   particle.speedX = Math.cos(angle);
   particle.speedY = Math.sin(angle);
   particle.x += particle.speedX;
   particle.y += particle.speedY;
+
   particle.history.push({ x: particle.x, y: particle.y });
   particle.history.length > particle.maxLineSegments
     ? particle.history.shift()
     : null;
+  // if (particle.x > cw || particle.y > ch) {
+  //   particle.history.pop();
+  //   particle.x = Math.random() * cw;
+  //   particle.y = Math.random() * ch;
+  // }
 }
 function mousePressed(p5) {
   // console.log(particleArray);
