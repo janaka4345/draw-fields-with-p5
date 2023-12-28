@@ -59,8 +59,10 @@ function draw(p5) {
     p5.background(0, 0, 0);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
-      particle.x += particle.speedX * p5.deltaTime * 0.01;
-      particle.y += particle.speedY * p5.deltaTime * 0.01;
+      particle.x +=
+        particle.speedX * p5.deltaTime * 0.01 + p5.random(-1.5, 1.5);
+      particle.y +=
+        particle.speedY * p5.deltaTime * 0.01 + p5.random(-1.5, 1.5);
       particle.history.push({ x: particle.x, y: particle.y });
     });
   };
@@ -84,14 +86,7 @@ function drawParticle(p5, particle) {
   particle.history.length > 30 ? particle.history.shift() : null;
 }
 
-//  function drawLineByVertices(p5, particle) {
-//   p5.push();
-//   p5.noStroke();
-//   p5.fill(255, 255, 255);
-//   p5.circle(particle.x, particle.y, particle.size);
-//   p5.pop();
-//  }
 function mousePressed(p5) {
-  console.log(particleArray);
+  // console.log(particleArray);
   console.log(p5.frameRate());
 }
