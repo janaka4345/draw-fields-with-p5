@@ -11,8 +11,9 @@ let coloumns = Math.floor(cw / cellSize);
 let numOfParticles = 100;
 let curve = 0.5;
 let zoom = 0.4;
+let zoff = 0;
 
-export default function Canvas10(props) {
+export default function Canvas11(props) {
   particleArray = useRef([]);
   flowFieldArray = useRef([]);
   const [state, setState] = useState(0);
@@ -34,14 +35,9 @@ export default function Canvas10(props) {
     }
   }, [state]);
   //calculating the flowfield with math.random
-  useMemo(() => {
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < coloumns; x++) {
-        let angle = (Math.cos(x * zoom) + Math.sin(y * zoom)) * curve;
-        flowFieldArray.current.push(angle);
-      }
-    }
-  }, []);
+  // useMemo(() => {
+
+  // }, []);
 
   return (
     <div>
@@ -73,11 +69,24 @@ function setup(p5) {
 }
 function draw(p5) {
   return () => {
+    flowFieldArray.current = [];
+    let yoff = 0;
+    for (let y = 0; y < rows; y++) {
+      let xoff = 0;
+      for (let x = 0; x < coloumns; x++) {
+        // let angle = (Math.cos(x * zoom) + Math.sin(y * zoom)) * curve;
+        let angle = p5.noise(xoff, yoff, zoff);
+        flowFieldArray.current.push(angle);
+        xoff++;
+      }
+      yoff++;
+    }
     p5.background(0, 0, 0, 255);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
       handleParticles(p5, particle);
     });
+    zoff++;
   };
 }
 function drawParticle(p5, particle) {

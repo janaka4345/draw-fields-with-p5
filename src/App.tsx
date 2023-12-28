@@ -9,6 +9,8 @@ import Canvas7 from "./components/Canvas7";//flow field with perlin noise try 3 
 import Canvas8 from "./components/Canvas8";//flow field with perlin noise try 3 with usememo---- unfinished
 import Canvas9 from "./components/Canvas9";//flow field laboratory- ligthing trail
 import Canvas10 from "./components/Canvas10";//flow field laboratory-math.random flow field
+import Canvas11 from "./components/Canvas11";//flow field laboratory-math.random flow field
+import CanvasWithShader from "./components/CanvasWithShader";//flow field laboratory-math.random flow field
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
       {/* <Canvas7/> */}
       {/* <Canvas8/> */}
       {/* <Canvas9/> */}
-      <Canvas10/>
+      {/* <Canvas10/> */}
+      {/* <CanvasWithShader /> */}
+      <Canvas11/>
 
 
     </>
