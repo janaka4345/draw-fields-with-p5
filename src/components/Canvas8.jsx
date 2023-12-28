@@ -43,7 +43,7 @@ function sketch(p5) {
 }
 function setup(p5) {
   return () => {
-    p5.createCanvas(200, 200, p5.WEBGL);
+    p5.createCanvas(200, 200);
 
     p5.pixelDensity(1);
   };
