@@ -29,8 +29,8 @@ function setup(p5) {
 }
 function draw(p5) {
   return () => {
-    p5.background(255, 0, 0);
     p5.loadPixels();
+    p5.background(255, 0, 0);
     let yoff = 0;
     for (let y = 0; y < 600; y++) {
       let xoff = 0;
@@ -46,9 +46,12 @@ function draw(p5) {
       }
       yoff += 0.01;
     }
+    // console.log(p5.pixels);
     p5.updatePixels();
-    console.log(p5.pixels);
-    p5.noLoop();
+    // p5.noLoop();
   };
 }
-function mousePressed(p5) {}
+function mousePressed(p5) {
+  console.log(p5.frameRate());
+  // console.log(p5.pixels);
+}

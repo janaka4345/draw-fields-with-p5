@@ -6,6 +6,7 @@ import Canvas4 from "./components/Canvas4";//efficient perlin noise
 import Canvas5 from "./components/Canvas5";//flow field with perlin noise
 import Canvas6 from "./components/Canvas6";//flow field with perlin noise try 2 with array.map 
 import Canvas7 from "./components/Canvas7";//flow field with perlin noise try 3 with parsing float no good
+import Canvas8 from "./components/Canvas8";//flow field with perlin noise try 3 with usememo
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       {/* <Canvas4/> */}
       {/* <Canvas5/> */}
       {/* <Canvas6/> */}
-      <Canvas7/>
+      {/* <Canvas7/> */}
+      <Canvas8/>
 
 
     </>
