@@ -14,8 +14,8 @@ export default function Canvas9(props) {
       particleArray.current.push({
         x: Math.random() * cw,
         y: Math.random() * ch,
-        speedX: Math.random() * 3 - 1.5,
-        speedY: Math.random() * 3 - 1.5,
+        speedX: Math.random() * 6 - 3,
+        speedY: Math.random() * 6 - 3,
       });
     }
 
@@ -55,8 +55,8 @@ function draw(p5) {
     p5.background(255, 0, 0);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
+      particle.x += particle.speedX * p5.deltaTime * 0.01;
+      particle.y += particle.speedY * p5.deltaTime * 0.01;
     });
   };
 }
@@ -69,6 +69,6 @@ function drawParticle(p5, particle) {
   p5.pop();
 }
 function mousePressed(p5) {
-  // console.log(vectorArray);
+  console.log(particleArray);
   console.log(p5.frameRate());
 }
