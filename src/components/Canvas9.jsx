@@ -2,16 +2,18 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 let particleArray;
+let cw = 200;
+let ch = 200;
 
 export default function Canvas9(props) {
   particleArray = useRef([]);
   const [state, setState] = useState(0);
 
-  useEffect(() => {
+  useMemo(() => {
     for (let i = 0; i < 30; i++) {
       particleArray.current.push({
-        x: Math.random() * 200,
-        y: Math.random() * 200,
+        x: Math.random() * cw,
+        y: Math.random() * ch,
         speedX: Math.random() * 3 - 1.5,
         speedY: Math.random() * 3 - 1.5,
       });
@@ -43,7 +45,7 @@ function sketch(p5) {
 }
 function setup(p5) {
   return () => {
-    p5.createCanvas(200, 200);
+    p5.createCanvas(cw, ch);
 
     p5.pixelDensity(1);
   };
