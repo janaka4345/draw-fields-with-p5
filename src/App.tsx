@@ -7,7 +7,8 @@ import Canvas5 from "./components/Canvas5";//flow field with perlin noise
 import Canvas6 from "./components/Canvas6";//flow field with perlin noise try 2 with array.map 
 import Canvas7 from "./components/Canvas7";//flow field with perlin noise try 3 with parsing float no good
 import Canvas8 from "./components/Canvas8";//flow field with perlin noise try 3 with usememo---- unfinished
-import Canvas9 from "./components/Canvas9";//flow field laboratory
+import Canvas9 from "./components/Canvas9";//flow field laboratory- ligthing trail
+import Canvas10 from "./components/Canvas10";//flow field laboratory-math.random flow field
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       {/* <Canvas6/> */}
       {/* <Canvas7/> */}
       {/* <Canvas8/> */}
-      <Canvas9/>
+      {/* <Canvas9/> */}
+      <Canvas10/>
 
 
     </>
