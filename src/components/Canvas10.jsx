@@ -73,19 +73,7 @@ function draw(p5) {
     p5.background(0, 0, 0);
     particleArray.current.forEach((particle, i) => {
       drawParticle(p5, particle);
-      // handling each particle
-      const x = Math.floor(particle.x / cellSize);
-      const y = Math.floor(particle.y / cellSize);
-      const index = x + y * coloumns;
-      const angle = flowFieldArray.current[index];
-      particle.speedX = Math.cos(angle);
-      particle.speedY = Math.sin(angle);
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      particle.history.push({ x: particle.x, y: particle.y });
-      particle.history.length > particle.maxLineSegments
-        ? particle.history.shift()
-        : null;
+      handleParticles(p5, particle);
     });
   };
 }
@@ -106,7 +94,21 @@ function drawParticle(p5, particle) {
   p5.endShape();
   p5.pop();
 }
-
+function handleParticles(p5, particle) {
+  // handling each particle
+  const x = Math.floor(particle.x / cellSize);
+  const y = Math.floor(particle.y / cellSize);
+  const index = x + y * coloumns;
+  const angle = flowFieldArray.current[index];
+  particle.speedX = Math.cos(angle);
+  particle.speedY = Math.sin(angle);
+  particle.x += particle.speedX;
+  particle.y += particle.speedY;
+  particle.history.push({ x: particle.x, y: particle.y });
+  particle.history.length > particle.maxLineSegments
+    ? particle.history.shift()
+    : null;
+}
 function mousePressed(p5) {
   // console.log(particleArray);
   console.log(p5.frameRate());
