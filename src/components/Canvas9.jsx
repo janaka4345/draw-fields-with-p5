@@ -6,6 +6,20 @@ let particleArray;
 export default function Canvas9(props) {
   particleArray = useRef([]);
   const [state, setState] = useState(0);
+
+  useEffect(() => {
+    for (let i = 0; i < 30; i++) {
+      particleArray.current.push({
+        x: Math.random() * 200,
+        y: Math.random() * 200,
+        speedX: Math.random() * 3 - 1.5,
+        speedY: Math.random() * 3 - 1.5,
+      });
+    }
+
+    return () => {};
+  }, []);
+
   return (
     <div>
       <div
@@ -22,14 +36,7 @@ export default function Canvas9(props) {
 
 function sketch(p5) {
   // p5.preload = preload(p5);
-  for (let i = 0; i < 30; i++) {
-    particleArray.current.push({
-      x: p5.random(0, 200),
-      y: p5.random(0, 200),
-      speedX: p5.random(0, 3) * 1 - 1,
-      speedY: p5.random(0, 3) * 1 - 1,
-    });
-  }
+
   p5.setup = setup(p5);
   p5.draw = draw(p5);
   p5.mousePressed = () => mousePressed(p5);
