@@ -30,7 +30,7 @@ function setup(p5) {
     p5.createCanvas(cw, cw);
 
     p5.pixelDensity(1);
-    // p5.background(255, 0, 0);
+    p5.background(255, 255, 255);
   };
 }
 function draw(p5) {
@@ -79,7 +79,7 @@ function draw(p5) {
   }
 
   return () => {
-    p5.background(255, 0, 0, 25);
+    // p5.background(255, 0, 0);
     p5.noFill();
     p5.stroke(0);
 
@@ -106,8 +106,9 @@ function draw(p5) {
       particle.x += vectorArray[index].x;
       particle.y += vectorArray[index].y;
       p5.push();
-      p5.fill(255);
-      p5.noStroke();
+      // p5.fill(255);
+      p5.strokeWeight(4);
+      p5.stroke(50, 5);
       p5.translate(particle.x, particle.y);
       p5.circle(0, 0, 2);
       p5.pop();
