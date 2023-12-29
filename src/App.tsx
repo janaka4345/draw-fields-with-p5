@@ -4,6 +4,7 @@ import Canvas2 from "./components/Canvas2";//perlin noise graph
 import Canvas3 from "./components/Canvas3";// perlin noise
 import Canvas4 from "./components/Canvas4";//efficient perlin noise
 import Canvas5 from "./components/Canvas5";//flow field with perlin noise
+import Canvas5Next from "./components/Canvas5Next";//flow field drawing - cont.from p5 noise
 import Canvas6 from "./components/Canvas6";//flow field with perlin noise try 2 with array.map 
 import Canvas7 from "./components/Canvas7";//flow field with perlin noise try 3 with parsing float no good
 import Canvas8 from "./components/Canvas8";//flow field with perlin noise try 3 with usememo---- unfinished
@@ -22,13 +23,14 @@ function App() {
       {/* <Canvas3/> */}
       {/* <Canvas4/> */}
       {/* <Canvas5/> */}
+      <Canvas5Next/>
       {/* <Canvas6/> */}
       {/* <Canvas7/> */}
       {/* <Canvas8/> */}
       {/* <Canvas9/> */}
       {/* <Canvas10/> */}
       {/* <CanvasWithShader /> */}
-      <Canvas11/>
+      {/* <Canvas11/> */}
 
 
     </>

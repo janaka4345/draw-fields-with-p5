@@ -66,7 +66,8 @@ function draw(p5) {
         // // // p5.fill(val);
         // // // p5.square(x * scale, y * scale, scale);
         p5.translate(x * scale, y * scale);
-        p5.rotate(vector.heading());
+        // p5.rotate(vector.heading());
+        p5.rotate(angle);
         p5.line(0, 0, scale, 0);
         p5.pop();
 
