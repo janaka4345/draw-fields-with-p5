@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 pixel-with-p5
+pixel-manipulation
+svg
 dist
 dist-ssr
 *.local
