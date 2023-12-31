@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 pixel-with-p5
 pixel-manipulation
+shaders-with-p5
 svg
 dist
 dist-ssr

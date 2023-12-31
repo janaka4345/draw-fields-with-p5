@@ -21,9 +21,9 @@ function App() {
       {/* <Canvas /> */}
       {/* <Canvas2/> */}
       {/* <Canvas3/> */}
-      {/* <Canvas4/> */}
+      <Canvas4/>
       {/* <Canvas5/> */}
-      <Canvas5Next/>
+      {/* <Canvas5Next/> */}
       {/* <Canvas6/> */}
       {/* <Canvas7/> */}
       {/* <Canvas8/> */}
