@@ -11,6 +11,9 @@ node_modules
 pixel-with-p5
 pixel-manipulation
 shaders-with-p5
+shader-advance
+shader-particle-image
+shader-SDFs
 svg
 dist
 dist-ssr
